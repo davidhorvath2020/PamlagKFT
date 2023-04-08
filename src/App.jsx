@@ -4,11 +4,26 @@ import Layout from './compontents/Layout';
 import Home from './pages/Home';
 
 import Kutyaknak from './pages/Kutyáknak/Kutyáknak';
-import Harness from './pages/Kutyáknak/Hámok';
-import HamokDetails from './pages/Kutyáknak/HámokDetails';
-import Collar from './pages/Kutyáknak/Nyakörvek';
-import Leash from './pages/Kutyáknak/Pórázok';
+import Harness from './pages/Kutyáknak/Harness';
+import Collar from './pages/Kutyáknak/Collar';
+import Leash from './pages/Kutyáknak/Leash';
+import ProductsDetails from './pages/Kutyáknak/ProductsDetails';
 import './App.css';
+
+
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCMolGIXGzVkpW5iA11h4ChjyEOIJQBg7w",
+  authDomain: "pamlag-kft.firebaseapp.com",
+  projectId: "pamlag-kft",
+  storageBucket: "pamlag-kft.appspot.com",
+  messagingSenderId: "644802287406",
+  appId: "1:644802287406:web:e1ed7f6fae61f1abfeccbf"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 function App() {
   return (
@@ -16,13 +31,18 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout />} >
           <Route index element={<Home />} />
-
           <Route path='/Kutyáknak' element={<Kutyaknak />} />
+
           <Route path='Kutyáknak/Hámok' element={<Harness />} />
-          <Route path='Kutyáknak/Hámok/:id' element={<HamokDetails/>} />
+          <Route path='Kutyáknak/Hámok/:id' element={<ProductsDetails />} />
 
           <Route path='Kutyáknak/Nyakörvek' element={<Collar />} />
+          <Route path='Kutyáknak/Nyakörvek/:id' element={<ProductsDetails />} />
+
           <Route path='Kutyáknak/Pórázok' element={<Leash />} />
+          <Route path='Kutyáknak/Pórázok/:id' element={<ProductsDetails />} />
+
+
           <Route path='/Macskáknak' element={<h1>Soon..</h1>} />
 
         </Route>

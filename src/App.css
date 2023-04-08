@@ -88,6 +88,15 @@ nav {
   font-weight: bolder;
 }
 
+.BackButton{
+  text-decoration: none;
+  color: white;
+}
+
+.BackButton:hover{
+  font-weight: bold;
+}
+
 /******************************HOME***********************************/
 
 .Home {
@@ -246,4 +255,34 @@ nav {
 .Hámok--Container {
   display: flex;
   flex-direction: column;
+}
+
+
+/******************************ProductsDetails***********************************/
+
+.ProductsDetails--Main{
+  display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+}
+
+.ProductsDetails--LeftSide{
+  width: 50%;
+}
+
+.ProductsDetails--RightSide{
+  width: 50%;
+  margin-top: 60px;
+  font-size: 1.2em;
+  background-color: #C4C4C4;
+  color: black;
+  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.ProductsDetails--image{
+  max-width: 300px;
 }

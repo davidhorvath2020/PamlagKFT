@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 export default function Kutyaknak() {
     return (
         <div className="Kutyaknak">
-            <Link to='..'>Vissza</Link>
+            <Link to='..' className="BackButton">Vissza</Link>
             <div className="LinksContainer">
                 <div className="container">
                     <div className="content">
                         <Link to='Hámok' >
                             <div className="content-overlay"></div>
-                            <img src="../src/assets/Hámok.png" className='content-image' />
+                            <img src="../src/assets/Hámok/Hámok.png" className='content-image' />
                             <div className="content-details fadeIn-bottom">
                                 <h3 className="content-title">Hámok</h3>
                                 <p className="content-text">Mutast a termékeket</p>
