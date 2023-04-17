@@ -15,6 +15,7 @@ export default function Harness() {
             )
         })
         .map((x) => {
+            const img = `../src/assets/Hámok/${x.img}`
             return (
                 <div className="LinksContainer" product={x.product} type={x.type} key={x.id}>
                     <div className="container">
@@ -25,7 +26,7 @@ export default function Harness() {
                                 state={{ productData: data.productData }} >
 
                                 <div className="content-overlay" ></div>
-                                <img src={`../src/assets/Hámok/${x.img}`} className='content-image' />
+                                <img src={img} className='content-image' />
                                 <div className="content-details fadeIn-bottom">
                                     <h3 className="content-title">Hámok: {x.type}</h3>
                                     <p className="content-text">Mutast a termékeket</p>

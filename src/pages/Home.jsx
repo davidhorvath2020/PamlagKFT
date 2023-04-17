@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import HomeBackground from "../assets/HomeBackground.webp"
-
+import Home_Cat from "../assets/Home_Cat.jpeg"
 
 import db from "../firebase"
 import { useEffect, useState } from 'react';
@@ -33,7 +33,7 @@ export default function Home() {
                 Macskás gazdik számára
             </h2>
             <Link to='/Macskáknak'>
-                <img src="./src/assets/Home_Cat.jpeg"
+                <img src={Home_Cat}
                     className="img--Kutyáknak"></img>
             </Link>
 

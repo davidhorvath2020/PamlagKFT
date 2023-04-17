@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Hámok from "../../assets/Hámok/Hámok.png"
+import Nyakörvek from "../../assets/Nyakörvek/Nyakörvek.png"
+import Pórázok from "../../assets/Pórázok/Pórázok.png"
 
 import db from "../../firebase"
 import { useEffect, useState } from 'react';
@@ -37,7 +40,7 @@ export default function Kutyaknak() {
                     <div className="content">
                         <Link to='Hámok' state={{productData: productData }} >
                             <div className="content-overlay"></div>
-                            <img src="../src/assets/Hámok/Hámok.png" className='content-image' />
+                            <img src={Hámok} className='content-image' />
                             <div className="content-details fadeIn-bottom">
                                 <h3 className="content-title">Hámok</h3>
                                 <p className="content-text">Mutast a termékeket</p>
@@ -50,7 +53,7 @@ export default function Kutyaknak() {
                     <div className="content">
                         <Link to='Nyakörvek' state={{productData: productData }} >
                             <div className="content-overlay"></div>
-                            <img src="../src/assets/Nyakörvek.png" className='content-image' />
+                            <img src={Nyakörvek} className='content-image' />
                             <div className="content-details fadeIn-bottom">
                                 <h3 className="content-title">Nyakörvek</h3>
                                 <p className="content-text">Mutast a termékeket</p>
@@ -63,7 +66,7 @@ export default function Kutyaknak() {
                     <div className="content">
                         <Link to='Pórázok' state={{productData: productData }} >
                             <div className="content-overlay"></div>
-                            <img src="../src/assets/Pórázok.png" className='content-image' />
+                            <img src={Pórázok} className='content-image' />
                             <div className="content-details fadeIn-bottom">
                                 <h3 className="content-title">Pórázok</h3>
                                 <p className="content-text">Mutast a termékeket</p>
