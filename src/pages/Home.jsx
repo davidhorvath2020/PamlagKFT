@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import HomeBackground from "../assets/HomeBackground.webp"
+
 
 import db from "../firebase"
 import { useEffect, useState } from 'react';
@@ -8,7 +10,6 @@ import { collection, onSnapshot } from 'firebase/firestore';
 export default function Home() {
 
     const [productData, setproductData] = useState([]);
-    console.log(productData)
 
     useEffect(
         () =>
@@ -23,7 +24,7 @@ export default function Home() {
                 Kutyás gazdik számára
             </h2>
             <Link to='/Kutyáknak'>
-                <img src="./src/assets/HomeBackground.webp"
+                <img src={HomeBackground}
                     className="img--Kutyáknak">
                 </img>
 
