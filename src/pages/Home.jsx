@@ -1,7 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import db from "../firebase"
+import { useEffect, useState } from 'react';
+import { collection, onSnapshot } from 'firebase/firestore';
+
 export default function Home() {
+
+    const [productData, setproductData] = useState([]);
+    console.log(productData)
+
+    useEffect(
+        () =>
+            onSnapshot(collection(db, "Products"), (snapshot) => {
+                setproductData(snapshot.docs.map(x => x.data()))
+            }), []
+    )
 
     return (
         <div className="Home">

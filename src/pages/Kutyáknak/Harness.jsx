@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Termékek from "../../../data/Data";
-
+import { useLocation } from "react-router-dom";
 
 export default function Harness() {
-    
+
+    const location = useLocation();
+    const data = location.state;
+
     const ProductsElements = Termékek
         .filter((x) => {
             return (
@@ -16,7 +19,11 @@ export default function Harness() {
                 <div className="LinksContainer" product={x.product} type={x.type} key={x.id}>
                     <div className="container">
                         <div className="content">
-                            <Link className="nav--elements" to={`/Kutyáknak/Hámok/${x.id}`} >
+                            <Link
+                                className="nav--elements"
+                                to={`/Kutyáknak/Hámok/${x.id}`}
+                                state={{ productData: data.productData }} >
+
                                 <div className="content-overlay" ></div>
                                 <img src={`../src/assets/Hámok/${x.img}`} className='content-image' />
                                 <div className="content-details fadeIn-bottom">

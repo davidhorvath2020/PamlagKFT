@@ -11,21 +11,8 @@ import ProductsDetails from './pages/Kutyáknak/ProductsDetails';
 import './App.css';
 
 
-import { initializeApp } from "firebase/app";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCMolGIXGzVkpW5iA11h4ChjyEOIJQBg7w",
-  authDomain: "pamlag-kft.firebaseapp.com",
-  projectId: "pamlag-kft",
-  storageBucket: "pamlag-kft.appspot.com",
-  messagingSenderId: "644802287406",
-  appId: "1:644802287406:web:e1ed7f6fae61f1abfeccbf"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
 function App() {
+
   return (
     <BrowserRouter>
       <Routes>
