@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import HomeBackground from "../../public/images/HomeBackground.webp"
-import Home_Cat from "../../public/images/Home_Cat.jpeg"
+import HomeBackground from "/images/HomeBackground.webp"
+import Home_Cat from "/images/Home_Cat.jpeg"
 
 import db from "../firebase"
 import { useEffect, useState } from 'react';
