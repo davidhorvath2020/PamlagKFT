@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Hámok from "../../../public/images/Hámok/Hámok.png"
-import Nyakörvek from "../../../public/images/Nyakörvek/Nyakörvek.png"
-import Pórázok from "../../../public/images/Pórázok/Pórázok.png"
+import Hámok from "/images/Hámok/Hámok.png"
+import Nyakörvek from "/images/Nyakörvek/Nyakörvek.png"
+import Pórázok from "/images/Pórázok/Pórázok.png"
 
 import db from "../../firebase"
 import { useEffect, useState } from 'react';

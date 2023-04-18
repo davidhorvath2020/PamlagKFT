@@ -58,7 +58,7 @@ export default function ProductsDetails() {
                                 <div className="ProductsDetails--LeftSide">
                                     <h1>Pictures</h1>
                                     <img
-                                        src={`../../../public/images/${products.product}/${products.img}`}
+                                        src={`/images/${products.product}/${products.img}`}
                                         className='ProductsDetails--image' />
                                 </div>
                                 <div className="ProductsDetails--RightSide">

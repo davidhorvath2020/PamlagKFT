@@ -20,7 +20,7 @@ export default function Harness() {
             )
         })
         .map((x) => {
-            const img = `../../../public/images/Pórázok/${x.img}`
+            const img = `/images/Pórázok/${x.img}`
             return (
                 <div className="LinksContainer" product={x.product} type={x.type} key={x.id}>
                     <div className="container">
