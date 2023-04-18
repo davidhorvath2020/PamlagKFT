@@ -5,6 +5,10 @@ import { useLocation } from "react-router-dom";
 
 export default function Harness() {
 
+    // import Nyakörvek from "../../../public/images/Nyakörvek/Nyakörvek.png"
+    // import Hámok from "../../../public/images/Hámok/Hámok.png"
+    // import Pórázok from "../../../public/images/Pórázok/Pórázok.png"
+
     const location = useLocation();
     const data = location.state;
 
@@ -15,7 +19,7 @@ export default function Harness() {
             )
         })
         .map((x) => {
-            const img = `../src/assets/Hámok/${x.img}`
+            const img = `../../../public/images/Hámok/${x.img}`
             return (
                 <div className="LinksContainer" product={x.product} type={x.type} key={x.id}>
                     <div className="container">

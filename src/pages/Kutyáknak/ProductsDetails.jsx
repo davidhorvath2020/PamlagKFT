@@ -7,6 +7,10 @@ import db from "../../firebase"
 // http://localhost:3000/Products
 export default function ProductsDetails() {
 
+    // import Nyakörvek from "../../../public/images/Nyakörvek/Nyakörvek.png"
+    // import Hámok from "../../../public/images/Hámok/Hámok.png"
+    // import Pórázok from "../../../public/images/Pórázok/Pórázok.png"
+
     const params = useParams()
     const [products, setProducts] = useState(null)
 
@@ -36,8 +40,6 @@ export default function ProductsDetails() {
             .then(x => setProducts(x))
     }, [params.id])
 
-
-
     return (
         <div>
             <Link to='..' className="BackButton" >Vissza</Link>
@@ -56,7 +58,7 @@ export default function ProductsDetails() {
                                 <div className="ProductsDetails--LeftSide">
                                     <h1>Pictures</h1>
                                     <img
-                                        src={`../../src/assets/${products.product}/${products.img}`}
+                                        src={`../../../public/images/${products.product}/${products.img}`}
                                         className='ProductsDetails--image' />
                                 </div>
                                 <div className="ProductsDetails--RightSide">

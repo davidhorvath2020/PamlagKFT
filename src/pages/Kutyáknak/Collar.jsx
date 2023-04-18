@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import Termékek from "../../../data/Data";
 import { useLocation } from "react-router-dom";
 
-import Nyakörvek from "../../assets/Nyakörvek/Nyakörvek.png"
-import Hámok from "../../assets/Hámok/Hámok.png"
-import Pórázok from "../../assets/Pórázok/Pórázok.png"
+// import Nyakörvek from "../../../public/images/Nyakörvek/Nyakörvek.png"
+// import Hámok from "../../../public/images/Hámok/Hámok.png"
+// import Pórázok from "../../../public/images/Pórázok/Pórázok.png"
 
 
 export default function Harness() {
@@ -19,7 +19,7 @@ export default function Harness() {
             )
         })
         .map((x) => {
-            const img = `../src/assets/Nyakörvek/${x.img}` 
+            const img = `../../../public/images/Nyakörvek/${x.img}` 
             return (
                 <div className="LinksContainer" product={x.product} type={x.type} key={x.id}>
                     <div className="container">

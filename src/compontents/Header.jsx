@@ -12,7 +12,7 @@ export default function Header() {
             <nav>
                 <div className="nav--leftside">
                     <h1>Pamlag KFT</h1>
-                    <img src={"../../src/assets/LOGO.png"} className="img--Logo"></img>
+                    <img src={"../../public/images/LOGO.png"} className="img--Logo"></img>
                 </div>
                 <div className="nav--rightside">
                     <NavLink

@@ -43,7 +43,7 @@ main {
   flex-direction: column;
 
   background-color: grey;
-  background-image: url(./assets/BackgroundImg.jpg);
+  background-image: url(../public/images/BackgroundImg.jpg);
   background-blend-mode: darken;
   background-repeat: no-repeat;
   min-height: 100vh;
