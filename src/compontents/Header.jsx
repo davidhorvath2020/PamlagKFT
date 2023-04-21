@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function Header() {
+export default function Header(props) {
 
     const activeStyle = {
         fontWeight: "bold"
@@ -35,6 +35,7 @@ export default function Header() {
                     </NavLink>
                     <div className='nav--elements'>IG</div>
                     <div className='nav--elements'>Face</div>
+                    <button onClick={props.handleCart} >Kosár</button>
                 </div>
             </nav>
         </header>

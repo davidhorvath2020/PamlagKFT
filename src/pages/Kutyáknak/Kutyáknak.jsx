@@ -25,20 +25,20 @@ export default function Kutyaknak() {
 
             <div>
                 <h1>firestore teszt</h1>
-                {productData.map(x => {
+                {/* {productData.map(x => {
                     return (
-                        <div>
+                        <div key = {x.id}>
                             <h2> {x.type}</h2>
                             <div>{x.description}</div>
                         </div>)
-                })}
+                })} */}
             </div>
 
             <Link to='..' className="BackButton">Vissza</Link>
             <div className="LinksContainer">
                 <div className="container">
                     <div className="content">
-                        <Link to='Hámok' state={{productData: productData }} >
+                        <Link to='Hámok' state={{ productData: productData }} >
                             <div className="content-overlay"></div>
                             <img src={Hámok} className='content-image' />
                             <div className="content-details fadeIn-bottom">
@@ -51,7 +51,7 @@ export default function Kutyaknak() {
 
                 <div className="container">
                     <div className="content">
-                        <Link to='Nyakörvek' state={{productData: productData }} >
+                        <Link to='Nyakörvek' state={{ productData: productData }} >
                             <div className="content-overlay"></div>
                             <img src={Nyakörvek} className='content-image' />
                             <div className="content-details fadeIn-bottom">
@@ -64,7 +64,7 @@ export default function Kutyaknak() {
 
                 <div className="container">
                     <div className="content">
-                        <Link to='Pórázok' state={{productData: productData }} >
+                        <Link to='Pórázok' state={{ productData: productData }} >
                             <div className="content-overlay"></div>
                             <img src={Pórázok} className='content-image' />
                             <div className="content-details fadeIn-bottom">

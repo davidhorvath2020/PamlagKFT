@@ -4,27 +4,13 @@ import { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import db from "../../firebase"
 
-// http://localhost:3000/Products
 export default function ProductsDetails() {
-
-    // import Nyakörvek from "../../../public/images/Nyakörvek/Nyakörvek.png"
-    // import Hámok from "../../../public/images/Hámok/Hámok.png"
-    // import Pórázok from "../../../public/images/Pórázok/Pórázok.png"
 
     const params = useParams()
     const [products, setProducts] = useState(null)
 
     const location = useLocation();
     const data = location.state;
-
-
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // useEffect(() => {
-    //     fetch(`http://localhost:3000/Products/${params.id}`)
-    //         .then(res => res.json())
-    //         .then(data => setProducts(data))
-    // }, [params.id])
-
 
     async function getDataFunction(id) {
         const docRef = doc(db, "Products", id)
@@ -35,21 +21,59 @@ export default function ProductsDetails() {
         }
     }
 
+    const [productsInCart, setProductsInCart] = useState(
+        JSON.parse(localStorage.getItem("productsInCart")) || []);
+
+    useEffect(() => {
+        localStorage.setItem("productsInCart", JSON.stringify(productsInCart))
+    }, [productsInCart])
+
+    const [count, setCount] = useState(1);
+
+    const onQuantityChange = (value) => {
+        setCount(event.target.value)
+        // console.log(count)
+    }
+
+
+
+
+
+    const addCart = (products) => {
+        console.log("here:", products.id, count)
+
+        const newProduct = {
+            ...products,
+            count: count,
+        };
+        setProductsInCart([
+            ...productsInCart,
+            newProduct,
+        ]);
+
+
+        setProductsInCart((oldState) => {
+            const index = productsInCart.findIndex(x => {
+                x.id === products.id
+            })
+            if (index !== -1) {
+                oldState(index).count = count;
+            }
+            return [...oldState]
+        })
+
+        console.log(productsInCart)
+    }
+
     useEffect(() => {
         getDataFunction(params.id)
-            .then(x => setProducts(x))
+            .then(data => setProducts(data))
     }, [params.id])
 
     return (
         <div>
             <Link to='..' className="BackButton" >Vissza</Link>
-            {data.productData.map(x => {
-                return (
-                    <div>
-                        <h2> {x.type}</h2>
-                        <div>{x.description}</div>
-                    </div>)
-            })}
+
             <section>
                 {products ?
                     (
@@ -66,6 +90,25 @@ export default function ProductsDetails() {
                                     <h2>Méretek: S M L XL</h2>
                                     <h2>Színek: Black, Yellow, Red</h2>
                                     <h2>Ár: {products.price} Ft</h2>
+                                    <div>
+                                        <button onClick={() => addCart(products)}>Add</button>
+                                        <select
+                                            value={products.count}
+                                            onChange={(event) => onQuantityChange(event.target.value)}
+                                        >
+                                            {[...Array(10).keys(),].
+                                                map((number) => {
+                                                    const num = number + 1;
+                                                    return (
+                                                        <option
+                                                            value={num}
+                                                            key={num}>
+                                                            {num}
+                                                        </option>
+                                                    );
+                                                })}
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             15000.-ft feletti vásárlás esetén ingyenes házhoz szállítás
@@ -77,3 +120,10 @@ export default function ProductsDetails() {
         </div>
     )
 }
+
+   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // useEffect(() => {
+    //     fetch(`http://localhost:3000/Products/${params.id}`)
+    //         .then(res => res.json())
+    //         .then(data => setProducts(data))
+    // }, [params.id])
