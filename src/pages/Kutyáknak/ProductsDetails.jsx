@@ -28,41 +28,80 @@ export default function ProductsDetails() {
         localStorage.setItem("productsInCart", JSON.stringify(productsInCart))
     }, [productsInCart])
 
-    const [count, setCount] = useState(1);
+    const [size, setSize] = useState('')
+    const [color, setColor] = useState('')
 
-    const onQuantityChange = (value) => {
-        setCount(event.target.value)
-        // console.log(count)
+    const onSizeChange = (value) => {
+        setSize(event.target.value)
+        console.log('SIZE', size)
+    }
+    const onColorChange = (value) => {
+        setColor(event.target.value)
+        console.log(color)
     }
 
-
-
-
-
     const addCart = (products) => {
-        console.log("here:", products.id, count)
 
-        const newProduct = {
-            ...products,
-            count: count,
-        };
-        setProductsInCart([
-            ...productsInCart,
-            newProduct,
-        ]);
+        const found = productsInCart.some(el => el.id === products.id)
 
+        if (size === '' || color === '') { alert('Adj meg méret és szín opciót!') }
+        else {
+            if (!found) {
+                const newProduct = {
+                    ...products,
+                    counting: 1,
+                    size: size,
+                    color: color,
+                    optionID: Math.floor(Math.random() * 1000) + 1
+                };
 
-        setProductsInCart((oldState) => {
-            const index = productsInCart.findIndex(x => {
-                x.id === products.id
-            })
-            if (index !== -1) {
-                oldState(index).count = count;
+                setProductsInCart([
+                    ...productsInCart,
+                    newProduct,
+                ]);
+
+                setProductsInCart((oldState) => {
+                    const index = productsInCart.findIndex(x => {
+                        x.id === products.id
+                    })
+                    if (index !== -1) {
+                        oldState(index).counting = count;
+                    }
+                    return [...oldState]
+                })
             }
-            return [...oldState]
-        })
-
-        console.log(productsInCart)
+            else if (found) {
+                alert('Ezt a terméket már hozzáadtad a kosaradhoz!')
+            }
+            else {
+                const foundIndex = productsInCart.find(x => x.id === products.id)
+                const index = (x) => x.id === foundIndex.id
+                const finalID = productsInCart.findIndex(index)
+                const newProduct = {
+                    ...products,
+                    counting: 1,
+                    size: size,
+                    color: color,
+                    optionID: Math.floor(Math.random() * 1000) + 1
+                };
+                if (newProduct.size !== productsInCart[finalID].size) {
+                    setProductsInCart(
+                        [...productsInCart,
+                            newProduct
+                        ]
+                    )
+                }
+                if (newProduct.color !== productsInCart[finalID].color) {
+                    setProductsInCart(
+                        [...productsInCart,
+                            newProduct
+                        ]
+                    )
+                }
+            }
+        }
+        setSize("")
+        setColor("")
     }
 
     useEffect(() => {
@@ -73,7 +112,6 @@ export default function ProductsDetails() {
     return (
         <div>
             <Link to='..' className="BackButton" >Vissza</Link>
-
             <section>
                 {products ?
                     (
@@ -92,23 +130,49 @@ export default function ProductsDetails() {
                                     <h2>Ár: {products.price} Ft</h2>
                                     <div>
                                         <button onClick={() => addCart(products)}>Add</button>
+                                    </div>
+                                    <div>
+                                        <h1>
+                                            Color: yellow, blue, red, orange
+                                        </h1>
                                         <select
-                                            value={products.count}
-                                            onChange={(event) => onQuantityChange(event.target.value)}
+                                            value={products.color}
+                                            onChange={(event) => onColorChange(event.target.value)}
                                         >
-                                            {[...Array(10).keys(),].
-                                                map((number) => {
-                                                    const num = number + 1;
-                                                    return (
-                                                        <option
-                                                            value={num}
-                                                            key={num}>
-                                                            {num}
-                                                        </option>
-                                                    );
-                                                })}
+                                            <option>
+                                                Select a color
+                                            </option>
+                                            <option value={'red'}>
+                                                red
+                                            </option>
+                                            <option value={'blue'}>
+                                                blue
+                                            </option>
+
                                         </select>
                                     </div>
+                                    <div>
+                                        <h1>
+                                            Size: S M L XL
+                                        </h1>
+                                        <select
+                                            value={products.size}
+                                            onChange={(event) => onSizeChange(event.target.value)}
+                                        >
+                                            <option >
+                                                Select a size
+                                            </option>
+                                            <option value={'s'}>
+                                                S
+                                            </option>
+                                            <option value={'m'}>
+                                                M
+                                            </option>
+
+                                        </select>
+                                    </div>
+
+
                                 </div>
                             </div>
                             15000.-ft feletti vásárlás esetén ingyenes házhoz szállítás
@@ -120,10 +184,3 @@ export default function ProductsDetails() {
         </div>
     )
 }
-
-   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // useEffect(() => {
-    //     fetch(`http://localhost:3000/Products/${params.id}`)
-    //         .then(res => res.json())
-    //         .then(data => setProducts(data))
-    // }, [params.id])

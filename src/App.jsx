@@ -9,7 +9,6 @@ import Leash from './pages/Kutyáknak/Leash';
 import ProductsDetails from './pages/Kutyáknak/ProductsDetails';
 import './App.css';
 
-
 function App() {
   return (
     <BrowserRouter>
