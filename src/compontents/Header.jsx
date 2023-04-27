@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { BsCartFill, BsCart } from "react-icons/bs";
 
 export default function Header(props) {
 
@@ -35,7 +36,12 @@ export default function Header(props) {
                     </NavLink>
                     <div className='nav--elements'>IG</div>
                     <div className='nav--elements'>Face</div>
-                    <button onClick={props.handleCart} >Kosár</button>
+                    <BsCart
+                        className="nav--cartIcon"
+                        onClick={props.handleCart}
+                    />
+
+                    {/* <BsCartFill/> */}
                 </div>
             </nav>
         </header>

@@ -45,7 +45,7 @@ main {
   background-color: grey;
   background-image: url(../public/images/BackgroundImg.jpg);
   background-blend-mode: darken;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   min-height: 100vh;
 }
 
@@ -96,6 +96,15 @@ nav {
 
 .BackButton:hover {
   font-weight: bold;
+}
+
+.nav--cartIcon {
+  font-size: 1.5em;
+}
+
+.nav--cartIcon:hover {
+  cursor: pointer;
+
 }
 
 /******************************HOME***********************************/
@@ -246,10 +255,11 @@ nav {
 }
 
 
-/******************************Hámok***********************************/
+/******************************Hámok/Nyakörek/Pórázok***********************************/
 
 .ElementContainer {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
 }
@@ -257,6 +267,122 @@ nav {
 .Hámok--Container {
   display: flex;
   flex-direction: column;
+}
+
+.LinksContainer {
+  display: flex;
+  flex-direction: row;
+  max-width: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+.container2 {
+  padding: 1em 0;
+  float: left;
+  width: 50%;
+}
+
+@media screen and (max-width: 640px) {
+  .container2 {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .container2 {
+    width: 33.33333%;
+  }
+}
+
+.container2 {
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.content2 {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.content2 .content-overlay2 {
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  height: 99%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  -moz-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+
+.content2:hover .content-overlay2 {
+  opacity: 1;
+}
+
+.content-image2 {
+  width: 100%;
+}
+
+.content-details2 {
+  position: absolute;
+  text-align: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -moz-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.content2:hover .content-details2 {
+  top: 50%;
+  left: 50%;
+  opacity: 1;
+}
+
+.content-details2 h3 {
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+}
+
+.content-details2 p {
+  color: #fff;
+  font-size: 0.8em;
+}
+
+.fadeIn2-bottom2 {
+  top: 80%;
+}
+
+.fadeIn2-top {
+  top: 20%;
+}
+
+.fadeIn2-left {
+  left: 20%;
+}
+
+.fadeIn2-right {
+  left: 80%;
 }
 
 
@@ -297,7 +423,6 @@ nav {
 
 .modal {
   position: fixed;
-
   top: 0;
   left: 0;
   right: 0;
@@ -322,10 +447,25 @@ nav {
 
 .shoppingCart--products {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.shoppingCart--product {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .cart--img {
   height: 100px;
+  border: 3px black solid;
+  border-radius: 3px;
 }
+
+/* *{
+  border: 1px solid black;
+} */

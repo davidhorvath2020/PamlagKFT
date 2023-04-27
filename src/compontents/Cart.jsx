@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
 export default function Card(props) {
 
@@ -19,16 +20,17 @@ export default function Card(props) {
             setProductsInCart(
                 productsInCart.map((x) =>
                     x.optionID === optionID ?
-                        { ...foundIndex, counting: foundIndex.counting + 1 } :
+                        {
+                            ...foundIndex,
+                            counting: foundIndex.counting + 1
+                        } :
                         x
                 ))
+            console.log(productsInCart.price)
         }
     }
     const Substract = (optionID) => {
         const foundIndex = productsInCart.find(x => x.optionID === optionID)
-
-        console.log(foundIndex.counting)
-
         if (foundIndex && foundIndex.counting > 1) {
             setProductsInCart(
                 productsInCart.map((x) =>
@@ -38,6 +40,10 @@ export default function Card(props) {
                 ))
         }
     }
+
+    const totalPrice = productsInCart.reduce(
+        (accumulator, current) =>
+            accumulator + current.price * current.counting, 0)
 
     const RemoveFromCart = (optionID) => {
         const foundIndex = productsInCart.find(x => x.optionID === optionID)
@@ -53,23 +59,42 @@ export default function Card(props) {
                 display: props.visibility ? 'block' : 'none'
             }}>
             <div className="shoppingCart">
-                <button onClick={() => props.setCartsVisibility(false)}>Close</button>
+                <AiOutlineCloseCircle
+                    onClick={() => props.setCartsVisibility(false)}
+                />
+                {productsInCart == '' && <h1>A korarad még üres!</h1>}
                 <div className="shoppingCart--products">
                     {productsInCart.map(x => {
                         return (
-                            <div key={x.optionID}>
-                                <div> {x.type} </div>
+                            <div className="shoppingCart--product" key={x.optionID}>
                                 <img src={`/images/${x.product}/${x.img}`} className="cart--img" />
-                                <div>{x.size}</div>
-                                <div>{x.color}</div>
-                                amount: {x.counting}
-                                <h2>{x.optionID}</h2>
+                                
+                                <h2> {x.type} </h2>
+                                <div>
+                                    <h3>Méret</h3>
+                                    <h3>{x.size}</h3>
+                                </div>
+                                <div>
+                                    <h3>Szín</h3>
+                                    <h3>{x.color}</h3>
+                                </div>
+                                <div>
+                                    <h3>Mennyiség</h3>
+                                    <h3>{x.counting}</h3>
+                                </div>
+                                <div>
+                                    <h3>Ár:</h3>
+                                    <h3>{x.counting * x.price} Ft</h3>
+                                </div>
                                 <button onClick={() => Add(x.optionID)}>+</button>
                                 <button onClick={() => Substract(x.optionID)}>-</button>
-                                <button onClick={() => RemoveFromCart(x.optionID)}>Delete</button>
+                                <button onClick={() => RemoveFromCart(x.optionID)}>Törlés</button>
                             </div>
                         )
                     })}
+                    <div>
+                        Teljes fizetendő: {totalPrice} Ft
+                    </div>
                 </div>
             </div>
         </div>

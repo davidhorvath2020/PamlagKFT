@@ -22,18 +22,18 @@ export default function Harness() {
             const img = `/images/Nyakörvek/${x.img}` 
             return (
                 <div className="LinksContainer" product={x.product} type={x.type} key={x.id}>
-                    <div className="container">
-                        <div className="content">
+                    <div className="container2">
+                        <div className="content2">
                             <Link 
                                 className="nav--elements"
                                 to={`/Kutyáknak/Nyakörvek/${x.id}`}
                                 state={{ productData: data.productData }} >
 
-                                <div className="content-overlay" ></div>
-                                <img src={img} className='content-image' />
-                                <div className="content-details fadeIn-bottom">
-                                    <h3 className="content-title">Nyakörvek: {x.type}</h3>
-                                    <p className="content-text">Mutast a termékeket</p>
+                                <div className="content-overlay2" ></div>
+                                <img src={img} className='content-image2' />
+                                <div className="content-details2 fadeIn2-bottom2">
+                                    <h3 className="content-title2">Nyakörvek: {x.type}</h3>
+                                    <p className="content-text2">Mutast a termékeket</p>
                                 </div>
                                 {/* <img src="../src/assets/Hámok/Bőr.png"></img> */}
                                 {/* {x.description} */}

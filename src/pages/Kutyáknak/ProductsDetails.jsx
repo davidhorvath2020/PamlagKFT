@@ -33,12 +33,12 @@ export default function ProductsDetails() {
 
     const onSizeChange = (value) => {
         setSize(event.target.value)
-        console.log('SIZE', size)
     }
     const onColorChange = (value) => {
         setColor(event.target.value)
-        console.log(color)
     }
+
+    const [add, setAdd] = useState(false)
 
     const addCart = (products) => {
 
@@ -69,14 +69,7 @@ export default function ProductsDetails() {
                     }
                     return [...oldState]
                 })
-            }
-            else if (found) {
-                alert('Ezt a terméket már hozzáadtad a kosaradhoz!')
-            }
-            else {
-                const foundIndex = productsInCart.find(x => x.id === products.id)
-                const index = (x) => x.id === foundIndex.id
-                const finalID = productsInCart.findIndex(index)
+            } else if (found) {
                 const newProduct = {
                     ...products,
                     counting: 1,
@@ -84,20 +77,21 @@ export default function ProductsDetails() {
                     color: color,
                     optionID: Math.floor(Math.random() * 1000) + 1
                 };
-                if (newProduct.size !== productsInCart[finalID].size) {
-                    setProductsInCart(
-                        [...productsInCart,
-                            newProduct
-                        ]
-                    )
+
+                const filteredProducts = productsInCart.filter(x => x.id === newProduct.id)
+
+                function findElementFunc(element) {
+                    return element.size === newProduct.size && element.color === newProduct.color;
                 }
-                if (newProduct.color !== productsInCart[finalID].color) {
-                    setProductsInCart(
-                        [...productsInCart,
-                            newProduct
-                        ]
-                    )
-                }
+                const findElement = filteredProducts.find(findElementFunc)
+                const boolFind = findElement === undefined
+
+                if (boolFind) {
+                    setProductsInCart([
+                        ...productsInCart,
+                        newProduct,
+                    ])
+                } else if (!boolFind) { alert('Már benne van') }
             }
         }
         setSize("")
@@ -118,49 +112,50 @@ export default function ProductsDetails() {
                         <div className="ProductsDetails--Container">
                             <div className="ProductsDetails--Main">
                                 <div className="ProductsDetails--LeftSide">
-                                    <h1>Pictures</h1>
+                                    <h2>{products.product}</h2>
                                     <img
                                         src={`/images/${products.product}/${products.img}`}
                                         className='ProductsDetails--image' />
                                 </div>
                                 <div className="ProductsDetails--RightSide">
-                                    <div>Leírás: {products.description}</div>
-                                    <h2>Méretek: S M L XL</h2>
-                                    <h2>Színek: Black, Yellow, Red</h2>
-                                    <h2>Ár: {products.price} Ft</h2>
-                                    <div>
-                                        <button onClick={() => addCart(products)}>Add</button>
-                                    </div>
+                                    <h3>{products.type}</h3>
+                                    <div>{products.description}</div>
                                     <div>
                                         <h1>
-                                            Color: yellow, blue, red, orange
+                                            Válaszható színek
                                         </h1>
                                         <select
-                                            value={products.color}
+                                            value={color}
                                             onChange={(event) => onColorChange(event.target.value)}
                                         >
                                             <option>
-                                                Select a color
+                                                Válassz egy színt
                                             </option>
-                                            <option value={'red'}>
-                                                red
+                                            <option value={'piros'}>
+                                                piros
                                             </option>
-                                            <option value={'blue'}>
-                                                blue
+                                            <option value={'kék'}>
+                                                kék
+                                            </option>
+                                            <option value={'citromsárga'}>
+                                                citromsárga
+                                            </option>
+                                            <option value={'narancssárga'}>
+                                                narancssárga
                                             </option>
 
                                         </select>
                                     </div>
                                     <div>
                                         <h1>
-                                            Size: S M L XL
+                                            Választható méretek
                                         </h1>
                                         <select
-                                            value={products.size}
+                                            value={size}
                                             onChange={(event) => onSizeChange(event.target.value)}
                                         >
                                             <option >
-                                                Select a size
+                                                Válassz egy méretet
                                             </option>
                                             <option value={'s'}>
                                                 S
@@ -168,11 +163,18 @@ export default function ProductsDetails() {
                                             <option value={'m'}>
                                                 M
                                             </option>
-
+                                            <option value={'l'}>
+                                                L
+                                            </option>
+                                            <option value={'xl'}>
+                                                XL
+                                            </option>
                                         </select>
                                     </div>
-
-
+                                    <h2>Ár: {products.price} Ft</h2>
+                                    <div>
+                                        <button onClick={() => addCart(products)}>Add</button>
+                                    </div>
                                 </div>
                             </div>
                             15000.-ft feletti vásárlás esetén ingyenes házhoz szállítás
@@ -184,3 +186,58 @@ export default function ProductsDetails() {
         </div>
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+else if (found) {
+                console.log('Found')
+                const foundIndex = productsInCart.find(x => x.id === products.id)
+                const index = (x) => x.id === foundIndex.id
+                const finalID = productsInCart.findIndex(index)
+                const newProduct = {
+                    ...products,
+                    counting: 1,
+                    size: size,
+                    color: color,
+                    optionID: Math.floor(Math.random() * 1000) + 1
+                };
+                console.log(finalID)
+                if (
+                    (newProduct.size !== productsInCart[finalID].size
+                        || newProduct.color !== productsInCart[finalID].color)
+                ) {
+                    setProductsInCart(
+                        [...productsInCart,
+                            newProduct
+                        ]
+                    )
+                } else if (
+                    (newProduct.size !== productsInCart[finalID].size
+                        && newProduct.color !== productsInCart[finalID].color)) {
+                    setProductsInCart(
+                        [...productsInCart,
+                            newProduct
+                        ]
+                    )
+                }
+                else { alert('Ezt már hozzáadtad!') }
+
+                // if (newProduct.color !== productsInCart[finalID].color) {
+                //     setProductsInCart(
+                //         [...productsInCart,
+                //             newProduct
+                //         ]
+                //     )
+
+            }
+*/
