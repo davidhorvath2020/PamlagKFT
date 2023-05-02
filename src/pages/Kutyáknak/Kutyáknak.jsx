@@ -22,19 +22,6 @@ export default function Kutyaknak() {
 
     return (
         <div className="Kutyaknak">
-
-            <div>
-                <h1>firestore teszt</h1>
-                {/* {productData.map(x => {
-                    return (
-                        <div key = {x.id}>
-                            <h2> {x.type}</h2>
-                            <div>{x.description}</div>
-                        </div>)
-                })} */}
-            </div>
-
-            <Link to='..' className="BackButton">Vissza</Link>
             <div className="LinksContainer">
                 <div className="container">
                     <div className="content">

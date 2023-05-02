@@ -1,46 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { BsCartFill, BsCart } from "react-icons/bs";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { BsCartFill, BsCart, BsInstagram, BsFacebook } from "react-icons/bs";
 
 export default function Header(props) {
 
-    const activeStyle = {
-        fontWeight: "bold"
+    const [showNavbar, setShowNavbar] = useState(false)
+
+    const handleShowNavbar = () => {
+        setShowNavbar(!showNavbar)
     }
 
     return (
         <header>
             <nav>
                 <div className="nav--leftside">
-                    <h1>Pamlag KFT</h1>
                     <img src={"/images/LOGO.png"} className="img--Logo"></img>
+                    <h1>Pamlag KFT</h1>
                 </div>
-                <div className="nav--rightside">
-                    <NavLink
-                        to='/'
-                        className="nav--elements"
-                        style={({ isActive }) => isActive ? activeStyle : null}>
-                        Főoldal
-                    </NavLink>
-                    <NavLink
-                        to='/Kutyáknak'
-                        className="nav--elements"
-                        style={({ isActive }) => isActive ? activeStyle : null}>
-                        Kutyáknak
-                    </NavLink>
-                    <NavLink
-                        to='/Macskáknak'
-                        className='nav--elements'
-                        style={({ isActive }) => isActive ? activeStyle : null}>
-                        Macskáknak
-                    </NavLink>
-                    <div className='nav--elements'>IG</div>
-                    <div className='nav--elements'>Face</div>
-                    <BsCart
-                        className="nav--cartIcon"
-                        onClick={props.handleCart}
-                    />
-
+                <div className="menu-icon" onClick={handleShowNavbar}>
+                    <GiHamburgerMenu />
+                </div>
+                <div className={`nav-elements ${showNavbar && 'active'}`}>
+                    <ul>
+                        <li>
+                            <NavLink to='/'>
+                                Főoldal
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='/Kutyáknak'>
+                                Kutyáknak
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='/Macskáknak'>
+                                Macskáknak
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to='https://www.instagram.com/horvathdawid/'>
+                                <BsInstagram
+                                    className='nav-elements--Icon'
+                                />
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to='https://www.facebook.com/profile.php?id=100003499556587'
+                                className='nav-elements--Icon'>
+                                <BsFacebook
+                                    className='nav-elements--Icon'
+                                />
+                            </NavLink>
+                        </li>
+                        <li>
+                            <BsCart
+                                className='nav-elements--Icon'
+                                onClick={props.handleCart}
+                            />
+                        </li>
+                    </ul>
                     {/* <BsCartFill/> */}
                 </div>
             </nav>

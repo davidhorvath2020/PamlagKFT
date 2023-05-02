@@ -26,7 +26,7 @@ function App() {
           <Route path='Kutyáknak/Pórázok' element={<Leash />} />
           <Route path='Kutyáknak/Pórázok/:id' element={<ProductsDetails />} />
 
-          <Route path='/Macskáknak' element={<h1>Soon..</h1>} />
+          <Route path='/Macskáknak' element={<h1>Hamarosan..</h1>} />
 
         </Route>
       </Routes>

@@ -38,7 +38,7 @@ export default function ProductsDetails() {
         setColor(event.target.value)
     }
 
-    const [add, setAdd] = useState(false)
+    // const [add, setAdd] = useState(false)
 
     const addCart = (products) => {
 
@@ -103,9 +103,9 @@ export default function ProductsDetails() {
             .then(data => setProducts(data))
     }, [params.id])
 
+
     return (
         <div>
-            <Link to='..' className="BackButton" >Vissza</Link>
             <section>
                 {products ?
                     (
@@ -173,7 +173,7 @@ export default function ProductsDetails() {
                                     </div>
                                     <h2>Ár: {products.price} Ft</h2>
                                     <div>
-                                        <button onClick={() => addCart(products)}>Add</button>
+                                        <button onClick={() => addCart(products)}>Hozzáad</button>
                                     </div>
                                 </div>
                             </div>
@@ -186,58 +186,3 @@ export default function ProductsDetails() {
         </div>
     )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-else if (found) {
-                console.log('Found')
-                const foundIndex = productsInCart.find(x => x.id === products.id)
-                const index = (x) => x.id === foundIndex.id
-                const finalID = productsInCart.findIndex(index)
-                const newProduct = {
-                    ...products,
-                    counting: 1,
-                    size: size,
-                    color: color,
-                    optionID: Math.floor(Math.random() * 1000) + 1
-                };
-                console.log(finalID)
-                if (
-                    (newProduct.size !== productsInCart[finalID].size
-                        || newProduct.color !== productsInCart[finalID].color)
-                ) {
-                    setProductsInCart(
-                        [...productsInCart,
-                            newProduct
-                        ]
-                    )
-                } else if (
-                    (newProduct.size !== productsInCart[finalID].size
-                        && newProduct.color !== productsInCart[finalID].color)) {
-                    setProductsInCart(
-                        [...productsInCart,
-                            newProduct
-                        ]
-                    )
-                }
-                else { alert('Ezt már hozzáadtad!') }
-
-                // if (newProduct.color !== productsInCart[finalID].color) {
-                //     setProductsInCart(
-                //         [...productsInCart,
-                //             newProduct
-                //         ]
-                //     )
-
-            }
-*/

@@ -56,19 +56,19 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 0 10px 0 10px;
+  margin: 0 15px 0 15px;
 }
 
 .img--Logo {
   max-height: 70px;
   background-blend-mode: color-burn;
-  border: 3px solid white;
-  background-color: white;
+  background-color: transparent;
 }
 
 .nav--leftside {
   display: flex;
   flex-direction: row;
+  align-items: flex-end;
 }
 
 .nav--rightside {
@@ -76,35 +76,96 @@ nav {
   flex-direction: row;
 }
 
-.nav--elements {
-  text-decoration: none;
+.menu-icon {
+  display: none;
+}
+
+.nav-elements {
+  z-index: 1;
+}
+
+.nav-elements ul {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+.nav-elements ul li:not(:last-child) {
+  margin-right: 60px;
+}
+
+.nav-elements ul a {
+  font-size: 16px;
+  font-weight: 400;
   color: white;
-  margin: 0 10px 0 10px;
-  cursor: pointer;
-  transition: all 0.1s ease-in-out;
-}
-
-
-.nav--elements:hover {
-  font-weight: bolder;
-}
-
-.BackButton {
   text-decoration: none;
+}
+
+.nav-elements ul a:hover {
+  font-weight: 500;
+}
+
+.nav-elements ul a.active {
   color: white;
+  font-weight: 500;
+  position: relative;
 }
 
-.BackButton:hover {
-  font-weight: bold;
+.nav-elements ul a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: white;
 }
 
-.nav--cartIcon {
+@media (max-width: 768px) {
+  .nav-elements ul li:not(:last-child) {
+    margin-right: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+  }
+
+  .nav-elements {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    background-color: #242424;
+    width: 0px;
+    height: calc(100vh - 60px);
+    transition: all 0.3s ease-in;
+    overflow: hidden;
+  }
+
+  .nav-elements.active {
+    width: 270px;
+  }
+
+  .nav-elements ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-elements ul li {
+    margin-right: unset;
+    margin-top: 22px;
+  }
+}
+
+.nav-elements--Icon {
   font-size: 1.5em;
 }
 
-.nav--cartIcon:hover {
+.nav-elements--Icon {
   cursor: pointer;
-
+  font-style: italic;
 }
 
 /******************************HOME***********************************/
@@ -132,6 +193,7 @@ nav {
 /******************************KUTYAKNAK***********************************/
 
 .Kutyaknak {
+  margin-top: 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -391,11 +453,13 @@ nav {
 .ProductsDetails--Main {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   margin: 50px 50px 50px 50px;
 }
 
 .ProductsDetails--LeftSide {
-  width: 50%;
+  width: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -403,23 +467,37 @@ nav {
 }
 
 .ProductsDetails--RightSide {
-  width: 50%;
-  margin-top: 60px;
+  width: auto;
+  max-width: 700px;
+  margin: auto;
   font-size: 1.2em;
   background-color: #C4C4C4;
   color: black;
   border: 3px solid black;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   padding: 20px;
 }
 
 .ProductsDetails--image {
-  max-width: 300px;
+  width: 80%;
+  margin: 20px 0 20px 0;
 }
 
 /******************************CART***********************************/
+
+.shoppingCart--CloseDiv{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.shoppingCart--CloseButton{
+  margin: 10px 30px 0 0;
+}
+
+.shoppingCart--CloseButton:hover {
+  cursor: pointer;
+}
 
 .modal {
   position: fixed;
@@ -443,21 +521,34 @@ nav {
   display: flex;
   flex-direction: column;
   position: relative;
+  border: 3px solid black;
+  background-color: #C4C4C4;
 }
 
 .shoppingCart--products {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
+  /* display: grid; */
   margin: 5px;
+  max-height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 10px;
 }
 
 .shoppingCart--product {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin: 5px;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
+  border: 3px solid black;
+}
+
+.shoppingCart--product div {
+  width: fit-content;
 }
 
 .cart--img {
@@ -466,6 +557,28 @@ nav {
   border-radius: 3px;
 }
 
-/* *{
+.shoppingCart--buttons {
+  display: flex;
+}
+
+.shoppingCart--TotalPrice {
+  display: flex;
+  border-top: 3px solid black;
+  justify-content: flex-end;
+  /* padding: 0 10px 0 0; */
+}
+
+/******************************FOOTER***********************************/
+
+.Footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  font-weight: bold;
+}
+
+/* 
+ *{
   border: 1px solid black;
-} */
+}  */

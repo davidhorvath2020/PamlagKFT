@@ -36,11 +36,6 @@ export default function Home() {
                 <img src={Home_Cat}
                     className="img--Kutyáknak"></img>
             </Link>
-
-            <h3>
-                Nagy tetű kutyákra specializálódva
-                Megbízható minőség
-            </h3>
         </div>
     )
 }

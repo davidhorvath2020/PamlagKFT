@@ -59,17 +59,23 @@ export default function Card(props) {
                 display: props.visibility ? 'block' : 'none'
             }}>
             <div className="shoppingCart">
-                <AiOutlineCloseCircle
-                    onClick={() => props.setCartsVisibility(false)}
-                />
+                <div className="shoppingCart--CloseDiv">
+                    <AiOutlineCloseCircle
+                        className="shoppingCart--CloseButton"
+                        onClick={() => props.setCartsVisibility(false)}
+                    />
+                </div>
                 {productsInCart == '' && <h1>A korarad még üres!</h1>}
                 <div className="shoppingCart--products">
                     {productsInCart.map(x => {
                         return (
                             <div className="shoppingCart--product" key={x.optionID}>
-                                <img src={`/images/${x.product}/${x.img}`} className="cart--img" />
-                                
-                                <h2> {x.type} </h2>
+                                <div>
+                                    <img src={`/images/${x.product}/${x.img}`} className="cart--img" />
+                                </div>
+                                <div>
+                                    <h2>{x.type}</h2>
+                                </div>
                                 <div>
                                     <h3>Méret</h3>
                                     <h3>{x.size}</h3>
@@ -82,18 +88,20 @@ export default function Card(props) {
                                     <h3>Mennyiség</h3>
                                     <h3>{x.counting}</h3>
                                 </div>
+                                <div className="shoppingCart--buttons">
+                                    <button onClick={() => Add(x.optionID)}>+</button>
+                                    <button onClick={() => Substract(x.optionID)}>-</button>
+                                    <button onClick={() => RemoveFromCart(x.optionID)}>Törlés</button>
+                                </div>
                                 <div>
                                     <h3>Ár:</h3>
                                     <h3>{x.counting * x.price} Ft</h3>
                                 </div>
-                                <button onClick={() => Add(x.optionID)}>+</button>
-                                <button onClick={() => Substract(x.optionID)}>-</button>
-                                <button onClick={() => RemoveFromCart(x.optionID)}>Törlés</button>
                             </div>
                         )
                     })}
-                    <div>
-                        Teljes fizetendő: {totalPrice} Ft
+                    <div className="shoppingCart--TotalPrice">
+                        <h3>Teljes fizetendő: {totalPrice} Ft </h3>
                     </div>
                 </div>
             </div>
