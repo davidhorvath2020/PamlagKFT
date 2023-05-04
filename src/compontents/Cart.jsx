@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import { AiOutlineCloseCircle, AiOutlineDelete } from "react-icons/ai";
 
 export default function Card(props) {
 
@@ -26,7 +26,6 @@ export default function Card(props) {
                         } :
                         x
                 ))
-            console.log(productsInCart.price)
         }
     }
     const Substract = (optionID) => {
@@ -70,31 +69,32 @@ export default function Card(props) {
                     {productsInCart.map(x => {
                         return (
                             <div className="shoppingCart--product" key={x.optionID}>
-                                <div>
+                                <div className="cart--imgContainer">
                                     <img src={`/images/${x.product}/${x.img}`} className="cart--img" />
                                 </div>
-                                <div>
+                                <div className="shoppingCart--details">
                                     <h2>{x.type}</h2>
-                                </div>
-                                <div>
-                                    <h3>Méret</h3>
-                                    <h3>{x.size}</h3>
-                                </div>
-                                <div>
-                                    <h3>Szín</h3>
-                                    <h3>{x.color}</h3>
-                                </div>
-                                <div>
-                                    <h3>Mennyiség</h3>
-                                    <h3>{x.counting}</h3>
+                                    <h3 className="shoppingCart--size">Méret: {x.size}</h3>
+                                    <h3 style={{ backgroundColor: `${x.color}` }}
+                                        className="shoppingCart--color"
+                                    ></h3>
                                 </div>
                                 <div className="shoppingCart--buttons">
-                                    <button onClick={() => Add(x.optionID)}>+</button>
-                                    <button onClick={() => Substract(x.optionID)}>-</button>
-                                    <button onClick={() => RemoveFromCart(x.optionID)}>Törlés</button>
+                                    <div>
+                                        <h3>{x.counting} db</h3>
+                                    </div>
+                                    <div className="shoppingCart--Amountbuttons">
+                                        <div onClick={() => Add(x.optionID)}>+</div>
+                                        <div onClick={() => Substract(x.optionID)}>-</div>
+                                    </div>
+                                    <div className="shoppingCart--Deletebuttons">
+                                        <AiOutlineDelete
+                                            className="shoppingCart--Deletebutton"
+                                            onClick={() => RemoveFromCart(x.optionID)}
+                                        />
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3>Ár:</h3>
+                                <div className="shoppingCart--price">
                                     <h3>{x.counting * x.price} Ft</h3>
                                 </div>
                             </div>
@@ -102,6 +102,7 @@ export default function Card(props) {
                     })}
                     <div className="shoppingCart--TotalPrice">
                         <h3>Teljes fizetendő: {totalPrice} Ft </h3>
+                        <button className="shoppingCart--PayButton">Fitezés</button>
                     </div>
                 </div>
             </div>

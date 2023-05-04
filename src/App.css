@@ -182,7 +182,7 @@ nav {
   width: 50%;
   transition: all 0.1s ease-in-out;
   margin: 30px;
-  border: yellow 3px solid;
+  border: black 3px solid;
 }
 
 .img--Kutyáknak:hover {
@@ -200,12 +200,13 @@ nav {
   align-items: center;
 }
 
-.LinksContainer {
+.Kutyaknak--LinksContainer {
   display: flex;
   flex-direction: row;
-  width: 70%;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  width: 70%;
 }
 
 .container {
@@ -321,9 +322,10 @@ nav {
 
 .ElementContainer {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
+  margin-top: 50px;
 }
 
 .Hámok--Container {
@@ -333,17 +335,11 @@ nav {
 
 .LinksContainer {
   display: flex;
-  flex-direction: row;
-  max-width: 50%;
   justify-content: center;
   align-items: center;
-}
-
-.container2 {
-  padding: 1em 0;
-  float: left;
   width: 50%;
 }
+
 
 @media screen and (max-width: 640px) {
   .container2 {
@@ -479,19 +475,64 @@ nav {
   padding: 20px;
 }
 
+.ProductsDetails--RightSideAddButton{
+  background-color: transparent;
+  transition: 0.3s;
+  height: 50px;
+  border-radius: 5px;
+  width: 15%;
+  font-weight: bold;
+}
+
+.ProductsDetails--RightSideAddButton:hover{
+  background-color: #3f3f3f;
+  cursor: pointer;
+}
+
 .ProductsDetails--image {
   width: 80%;
   margin: 20px 0 20px 0;
+  border: 3px black solid;
 }
+
+.AddedAlertContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 75%;
+  left: 50%;
+  margin-left: -37.5%;
+  z-index: 2;
+  background-color: #242424;
+  font-weight: bold;
+  transition: 0.5s;
+}
+
+.AddedAlert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  width: 500px;
+  height: 300px;
+}
+
+select{
+  border-radius: 5px;
+  height: 50px;
+  width: 50%;
+}
+
 
 /******************************CART***********************************/
 
-.shoppingCart--CloseDiv{
+.shoppingCart--CloseDiv {
   display: flex;
   justify-content: flex-end;
 }
 
-.shoppingCart--CloseButton{
+.shoppingCart--CloseButton {
   margin: 10px 30px 0 0;
 }
 
@@ -506,7 +547,6 @@ nav {
   right: 0;
   bottom: 0;
   width: 100%;
-  /* height: 100%; */
   background-color: #00000055;
   z-index: 10;
   color: black;
@@ -514,7 +554,6 @@ nav {
 
 .shoppingCart {
   width: 60%;
-  /* height: 90%; */
   margin: 2rem auto;
   background-color: #eee;
   padding: 1rem;
@@ -528,7 +567,6 @@ nav {
 .shoppingCart--products {
   display: flex;
   flex-direction: column;
-  /* display: grid; */
   margin: 5px;
   max-height: 500px;
   overflow-y: scroll;
@@ -548,24 +586,95 @@ nav {
 }
 
 .shoppingCart--product div {
-  width: fit-content;
+  display: flex;
+  justify-content: center;
+  margin: 0 3px 0 3px;
+}
+
+.cart--imgContainer{
+  width: 200px;
 }
 
 .cart--img {
-  height: 100px;
+  max-width: 150px;
   border: 3px black solid;
   border-radius: 3px;
 }
 
+.shoppingCart--details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100px;
+  margin: 5px 0 5px 0;
+  align-items: center;
+}
+
+.shoppingCart--color {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
 .shoppingCart--buttons {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 180px;
+}
+
+.shoppingCart--Amountbuttons div {
+  background-color: transparent;
+  font-size: 1.8em;
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 5px;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.shoppingCart--Amountbuttons div:hover {
+  cursor: pointer;
+  background-color: #3f3f3f;
+}
+
+.shoppingCart--buttons button {
+  margin: 5px;
+}
+
+.shoppingCart--Deletebutton {
+  font-size: 1.8em;
+}
+
+.shoppingCart--Deletebutton:hover {
+  cursor: pointer;
+}
+
+.shoppingCart--price{
+  width: 100px;
 }
 
 .shoppingCart--TotalPrice {
   display: flex;
+  flex-direction: column;
   border-top: 3px solid black;
-  justify-content: flex-end;
-  /* padding: 0 10px 0 0; */
+  justify-content: center;
+  align-items: center;
+}
+
+.shoppingCart--PayButton {
+  width: 20%;
+  background-color: transparent;
+  border-radius: 5px;
+  height: 50px;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.shoppingCart--PayButton:hover {
+  cursor: pointer;
+  background-color: #3f3f3f;
 }
 
 /******************************FOOTER***********************************/
@@ -577,8 +686,3 @@ nav {
   height: 40px;
   font-weight: bold;
 }
-
-/* 
- *{
-  border: 1px solid black;
-}  */

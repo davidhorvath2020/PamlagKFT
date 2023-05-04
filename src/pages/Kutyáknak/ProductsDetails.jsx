@@ -11,6 +11,14 @@ export default function ProductsDetails() {
 
     const location = useLocation();
     const data = location.state;
+    const [isAddedVisible, setIsAddedVisible] = useState(false);
+
+    const handleButtonClick = () => {
+        setIsAddedVisible(true);
+        setTimeout(() => {
+            setIsAddedVisible(false);
+        }, 1500);
+    }
 
     async function getDataFunction(id) {
         const docRef = doc(db, "Products", id)
@@ -38,8 +46,6 @@ export default function ProductsDetails() {
         setColor(event.target.value)
     }
 
-    // const [add, setAdd] = useState(false)
-
     const addCart = (products) => {
 
         const found = productsInCart.some(el => el.id === products.id)
@@ -59,7 +65,7 @@ export default function ProductsDetails() {
                     ...productsInCart,
                     newProduct,
                 ]);
-
+                handleButtonClick();
                 setProductsInCart((oldState) => {
                     const index = productsInCart.findIndex(x => {
                         x.id === products.id
@@ -91,7 +97,8 @@ export default function ProductsDetails() {
                         ...productsInCart,
                         newProduct,
                     ])
-                } else if (!boolFind) { alert('Már benne van') }
+                    handleButtonClick()
+                } else if (!boolFind) { alert('Ezt a terméket már hozzáadtad a kosárhoz!') }
             }
         }
         setSize("")
@@ -103,10 +110,14 @@ export default function ProductsDetails() {
             .then(data => setProducts(data))
     }, [params.id])
 
-
     return (
         <div>
             <section>
+                {isAddedVisible
+                    &&
+                    <div className="AddedAlertContainer">
+                        <div className="AddedAlert">Házzadva a kosaradhoz!</div>
+                    </div>}
                 {products ?
                     (
                         <div className="ProductsDetails--Container">
@@ -131,17 +142,22 @@ export default function ProductsDetails() {
                                             <option>
                                                 Válassz egy színt
                                             </option>
-                                            <option value={'piros'}>
+                                            <option
+                                                value={'red'}
+                                            >
                                                 piros
                                             </option>
-                                            <option value={'kék'}>
+                                            <option
+                                                value={'blue'}>
                                                 kék
                                             </option>
-                                            <option value={'citromsárga'}>
-                                                citromsárga
+                                            <option
+                                                value={'yellow'}>
+                                                sárga
                                             </option>
-                                            <option value={'narancssárga'}>
-                                                narancssárga
+                                            <option
+                                                value={'orange'}>
+                                                narancs
                                             </option>
 
                                         </select>
@@ -157,24 +173,29 @@ export default function ProductsDetails() {
                                             <option >
                                                 Válassz egy méretet
                                             </option>
-                                            <option value={'s'}>
+                                            <option value={'S'}>
                                                 S
                                             </option>
-                                            <option value={'m'}>
+                                            <option value={'M'}>
                                                 M
                                             </option>
-                                            <option value={'l'}>
+                                            <option value={'L'}>
                                                 L
                                             </option>
-                                            <option value={'xl'}>
+                                            <option value={'XL'}>
                                                 XL
                                             </option>
                                         </select>
                                     </div>
                                     <h2>Ár: {products.price} Ft</h2>
                                     <div>
-                                        <button onClick={() => addCart(products)}>Hozzáad</button>
+                                        <button
+                                            className="ProductsDetails--RightSideAddButton"
+                                            onClick={() => addCart(products)}>
+                                            Hozzáad
+                                        </button>
                                     </div>
+
                                 </div>
                             </div>
                             15000.-ft feletti vásárlás esetén ingyenes házhoz szállítás

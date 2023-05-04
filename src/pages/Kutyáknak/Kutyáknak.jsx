@@ -22,7 +22,7 @@ export default function Kutyaknak() {
 
     return (
         <div className="Kutyaknak">
-            <div className="LinksContainer">
+            <div className="Kutyaknak--LinksContainer">
                 <div className="container">
                     <div className="content">
                         <Link to='Hámok' state={{ productData: productData }} >
