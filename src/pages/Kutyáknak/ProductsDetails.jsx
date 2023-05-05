@@ -17,7 +17,7 @@ export default function ProductsDetails() {
         setIsAddedVisible(true);
         setTimeout(() => {
             setIsAddedVisible(false);
-        }, 1500);
+        }, 2000);
     }
 
     async function getDataFunction(id) {
@@ -117,6 +117,11 @@ export default function ProductsDetails() {
                     &&
                     <div className="AddedAlertContainer">
                         <div className="AddedAlert">Házzadva a kosaradhoz!</div>
+                        <button
+                            className="AddedAlertOk"
+                            onClick={() => setIsAddedVisible(false)}>
+                            ok
+                        </button>
                     </div>}
                 {products ?
                     (
@@ -194,11 +199,12 @@ export default function ProductsDetails() {
                                             onClick={() => addCart(products)}>
                                             Hozzáad
                                         </button>
+                                        <div>
+                                            15000.-ft feletti vásárlás esetén ingyenes házhoz szállítás
+                                        </div>
                                     </div>
-
                                 </div>
                             </div>
-                            15000.-ft feletti vásárlás esetén ingyenes házhoz szállítás
                         </div>
                     ) :
                     <h2>Loading</h2>

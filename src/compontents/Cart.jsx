@@ -102,7 +102,11 @@ export default function Card(props) {
                     })}
                     <div className="shoppingCart--TotalPrice">
                         <h3>Teljes fizetendő: {totalPrice} Ft </h3>
-                        <button className="shoppingCart--PayButton">Fitezés</button>
+                        <button
+                            className="shoppingCart--PayButton"
+                            onClick={()=>alert('Az weboldalról vásárlás nem lehetséges!')}>
+                            Fitezés
+                        </button>
                     </div>
                 </div>
             </div>

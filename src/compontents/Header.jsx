@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { BsCartFill, BsCart, BsInstagram, BsFacebook } from "react-icons/bs";
+import { BsCart, BsInstagram, BsFacebook } from "react-icons/bs";
 
 export default function Header(props) {
 
@@ -59,6 +59,8 @@ export default function Header(props) {
                             <BsCart
                                 className='nav-elements--Icon'
                                 onClick={props.handleCart} />
+                        </li>
+                        <li>
                         </li>
                     </ul>
 
